@@ -1,30 +1,29 @@
 package jdbc;
-
 import java.sql.*;
-import java.sql.SQLException;
-import java.util.Scanner;
-import java.util.*;
 import jdbc.*;
+public class insertJdbc {
 
-public class Jdbc {
-
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         try {
-            //load the drive:
+            //driver connection
             Class.forName("com.mysql.jdbc.Driver");
-
             //creating a connection
-            Connection con =DriverManager.getConnection("jdbc:mysql://localhost:3306/youtube","root","Tusher#@1");
-            //Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "Tusher#@1");
+            String url = "jdbc:mysql://localhost:3306/youtube";
+            String username = "root";
+            String password = "Tusher#@1";
+            Connection con=DriverManager.getConnection(url,username,password);
             
-            if(con.isClosed()){
-                System.out.println("connection is closed");
-            }else{
-                System.out.println("connection created...");
-            }
-        } catch (ClassNotFoundException e) {
+            //create a query
+            String q="create table table1(tId int(20)primary key auto_increment,tName varchar(200) not null,tCity varchar(400))";
+            
+            //create a statement
+             Statement stmt=con.createStatement();
+            stmt.executeUpdate(q);
+             System.out.println("table created in database..");
+             con.close();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }
