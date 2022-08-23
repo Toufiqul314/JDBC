@@ -18,7 +18,7 @@ public class PreparedStatement_insert {
             //create a query
             String q = "insert into table1(tName,tCity)values(?,?)";
             //get the preparedStatement object
-            PreparedStatement pstmt = con.prepareCall(q);
+            PreparedStatement pstmt = con.prepareStatement(q);
 
             //set the values to query
             pstmt.setString(1, "Toufiqul Islam");
